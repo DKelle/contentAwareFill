@@ -14,15 +14,6 @@ public class ContentAwareFrame extends JComponent{
 	private BufferedImage img = null;
 
 
-	public static void main(String[] args){
-		for(int i = 0; i < args.length; i ++){
-			System.out.println("args[i] = " + args[i]);
-		}
-
-		new ContentAwareFrame(args[0]);
-
-	}
-
 	/**
 	 *	Initialzies the ContentAwareFrame object
 	 *
@@ -90,29 +81,21 @@ public class ContentAwareFrame extends JComponent{
 		}
 	}
 
-	public Image getImageResource(String name) {
+	/**
+	 *	@Return - The image that is being displayed in the Frame
+	 *
+	 */
+	public BufferedImage getImage(){
+		return img;
+	}
 
-		String url = ""+getClass().getResource(name);
-		if (url.equals("null")||url==null) {
-			System.out.println("DEBUG: image resource name: " + name);
-			System.out.println("DEBUG: image resource url: " + url);
-		}
 
-		Image tbr = null;
-
-		try {
-
-			tbr = Toolkit.getDefaultToolkit().getImage(getClass().getResource(name));
-
-			long startTime = System.currentTimeMillis();
-			while (tbr.getWidth(this)<1 && System.currentTimeMillis() < startTime + 5000) {}
-
-		} catch (Exception e) {
-			System.out.println("Exception thrown for image " + name + ": ");
-			e.printStackTrace();
-		}
-
-		return tbr;
+	/**
+	 *	@Param img - The new image to be displayed in the frame
+	 *
+	 */
+	public void setImage(BufferedImage img){
+		this.img = img;
 	}
 
 	public void paintComponent(Graphics g){

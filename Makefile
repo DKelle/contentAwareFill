@@ -2,4 +2,4 @@ all:
 	javac -d bin -cp ./ src/*.java
 
 go:
-	java -cp bin ContentAwareFrame pika.png 
+	java -cp bin ContentAwareManager pika.png 
